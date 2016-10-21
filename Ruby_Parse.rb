@@ -6,7 +6,6 @@ LOCAL_FILE = 'http_access_log.bak'
 download = open(REMOTE_URL)
 IO.copy_stream(download, LOCAL_FILE)
 
-#LOCAL_FILE = 'short_parse.rtf'
 File.foreach(LOCAL_FILE) do |line|
 	#Counts the total number of requests (all of the iterations).
 	total_requests += 1
@@ -41,7 +40,12 @@ end
 failed_req_4xx = (status_4xx.to_f / total_requests.to_f * 100).truncate
 redirected_req_3xx = (status_3xx.to_f / total_requests.to_f * 100).truncate
 
-#sorted_files = file_names.max_by { |v| freq[v] }
-
 #Sorts the files from greatest number of occurences to the least.
 sorted_files = listed_files.sort_by { |k, v| -v }
+
+puts "The Total Number of Requests Made: #{total_requests}"
+puts "Percentage of Unsuccessful Requests: #{failed_req_4xx}%"
+puts "Percentage of Redirected Requests: #{redirected_req_3xx}%"
+puts "The Most-Requested File: #{sorted_files[0][0]}"
+puts "The Least-Requested File: #{sorted_files[-1][0]}"
+	
