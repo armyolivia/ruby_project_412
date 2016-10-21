@@ -31,3 +31,17 @@ File.foreach(LOCAL_FILE) do |line|
 	#It adds it to the total number of times it see it occur
 	if codes[0] == "3" then status_3xx += 1 end
 	if codes[0] == "4" then status_4xx += 1 end
+	
+	#Everytime the program encounters the same file name, it increments by one.
+	listed_files[file_names] = (if listed_files[file_names] then listed_files[file_names]+=1 else 1 end)
+	
+end
+
+#Calculates the percentage of failed and redirected requests, respectfully.
+failed_req_4xx = (status_4xx.to_f / total_requests.to_f * 100).truncate
+redirected_req_3xx = (status_3xx.to_f / total_requests.to_f * 100).truncate
+
+#sorted_files = file_names.max_by { |v| freq[v] }
+
+#Sorts the files from greatest number of occurences to the least.
+sorted_files = listed_files.sort_by { |k, v| -v }
