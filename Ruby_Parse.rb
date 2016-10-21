@@ -26,3 +26,8 @@ File.foreach(LOCAL_FILE) do |line|
 	#The location of the the status codes in the line array.
 	#It is negative one because it is the last item in the array.
 	codes = check [-1] 
+	
+	#If the first digit in the array for codes is a 3 or a 4
+	#It adds it to the total number of times it see it occur
+	if codes[0] == "3" then status_3xx += 1 end
+	if codes[0] == "4" then status_4xx += 1 end
