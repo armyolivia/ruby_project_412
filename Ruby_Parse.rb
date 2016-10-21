@@ -1,3 +1,7 @@
+# Olivia Thomas
+# 21 October 2016
+# TCMG 412 - DevOps
+# Project 3: Building an App in Ruby
 require 'open-uri'
 
 #Configuration
